@@ -1,6 +1,6 @@
 package dao.repository;
 
-public interface AccessToDataBase {
+public interface SettingAccessToDB {
 	
 	    static final String DB_URL="jdbc:mysql://localhost:3306/medicalservice?useSSL=true";
 	    static final String loginDB = "root";

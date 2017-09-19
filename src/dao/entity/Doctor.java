@@ -7,8 +7,8 @@ public class Doctor extends Person{
 	
 	public Doctor() {}
 	
-	public Doctor(String firstName, String secondName, String surName, String phoneNumber, String specialization){
-		super(firstName, secondName, surName, phoneNumber);
+	public Doctor(String firstName, String surName, String phoneNumber, String specialization){
+		super(firstName, surName, phoneNumber);
 		this.specialization = specialization;
 	}
 
@@ -29,39 +29,9 @@ public class Doctor extends Person{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + (int) (doctorID ^ (doctorID >>> 32));
-		result = prime * result
-				+ ((specialization == null) ? 0 : specialization.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Doctor other = (Doctor) obj;
-		if (doctorID != other.doctorID)
-			return false;
-		if (specialization == null) {
-			if (other.specialization != null)
-				return false;
-		} else if (!specialization.equals(other.specialization))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Doctor [doctorID=" + doctorID + ", specialization="
+		return super.toString() + "Doctor [doctorID=" + doctorID + ", specialization="
 				+ specialization + "]";
 	}
 
-	
 }

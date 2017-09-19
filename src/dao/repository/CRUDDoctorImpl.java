@@ -9,19 +9,19 @@ import java.util.ArrayList;
 
 import dao.entity.Doctor;
 
-public class CRUDDoctorRepositoryImplementation implements CRUDDoctorRepository{
+public class CRUDDoctorImpl implements CRUDDoctor, SettingAccessToDB{
 
 	
 	@Override
-	public void addDoctor(Doctor doctor) {
+	public void addNewDoctor(Doctor doctor) {
 		
 		try (
                 Connection connection = DriverManager.getConnection(DB_URL, loginDB, passwordDB);
                 Statement statement = connection.createStatement();
         ) {
 			
-			statement.executeUpdate("INSERT INTO doctor (firstName, secondName, surName, phoneNumber, specialization) " +
-                    "VALUES('" + doctor.getFirstName() + "', '" + doctor.getSecondName() + "', '" + doctor.getSurName() + "', '" + 
+			statement.executeUpdate("INSERT INTO doctor (firstName, surName, phoneNumber, specialization) " +
+                    "VALUES('" + doctor.getFirstName() + "', '" + doctor.getSurName() + "', '" + 
 					doctor.getPhoneNumber() + "', '" + doctor.getSpecialization() + "')");
 
         }  catch (SQLException e) {
@@ -47,10 +47,9 @@ public class CRUDDoctorRepositoryImplementation implements CRUDDoctorRepository{
                 Doctor doctorFromDB = new Doctor();
                 doctorFromDB.setDoctorID(resultSet.getInt(1));
                 doctorFromDB.setFirstName(resultSet.getString(2));
-                doctorFromDB.setSecondName(resultSet.getString(3));
-                doctorFromDB.setSurName(resultSet.getString(4));
-                doctorFromDB.setPhoneNumber(resultSet.getString(5));
-                doctorFromDB.setSpecialization(resultSet.getString(6));
+                doctorFromDB.setSurName(resultSet.getString(3));
+                doctorFromDB.setPhoneNumber(resultSet.getString(4));
+                doctorFromDB.setSpecialization(resultSet.getString(5));
                 listAllDoctors.add(doctorFromDB);
             }
         }  catch (SQLException e) {
@@ -59,10 +58,6 @@ public class CRUDDoctorRepositoryImplementation implements CRUDDoctorRepository{
 		
 		return listAllDoctors;
 	}
-	
-	
-	
-	
 	
 	
 

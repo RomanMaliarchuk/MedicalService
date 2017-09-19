@@ -3,24 +3,21 @@ package controller.service;
 import java.util.ArrayList;
 
 import dao.entity.Doctor;
-import dao.repository.CRUDDoctorRepositoryImplementation;
+import dao.repository.CRUDDoctor;
+import dao.repository.CRUDDoctorImpl;
 
 public class ServiceDoctor {
 	
-	CRUDDoctorRepositoryImplementation CRUDDoctor = new CRUDDoctorRepositoryImplementation();
+	CRUDDoctor CRUDdoctor = new CRUDDoctorImpl();
 
 	
-	
-	public void addDoctor(Doctor doctor){
-		new CRUDDoctorRepositoryImplementation().addDoctor(doctor);
+	public void addNewDoctor(Doctor doctor){
+		CRUDdoctor.addNewDoctor(doctor);
 	}
-	
 	
 	
 	public ArrayList<Doctor> getListAllDoctors(){
-		ArrayList<Doctor> listAllDoctors = CRUDDoctor.getListAllDoctors();
-		return listAllDoctors;
+		return CRUDdoctor.getListAllDoctors();
 	}
-	
 	
 }
